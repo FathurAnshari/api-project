@@ -1,9 +1,16 @@
 import { MongoClient } from "mongodb";
+import { config } from "dotenv";
+
+config();
 
 export async function connectDatabase() {
-  const client = await MongoClient.connect(
-    "mongodb+srv://fathuranshari:oslDosAsC1H4cGdD@cluster0.xcg1oby.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
-  );
+  const mongoURI = process.env.MONGODB_URI;
+
+  if (!mongoURI) {
+    throw new Error("MongoDb URI not found");
+  }
+
+  const client = await MongoClient.connect(mongoURI);
 
   return client;
 }

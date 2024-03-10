@@ -1,5 +1,3 @@
-import { MongoClient } from "mongodb";
-
 import {
   connectDatabase,
   getAllDocument,
